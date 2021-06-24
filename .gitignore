@@ -1,0 +1,14 @@
+.idea
+.mvn
+/src/main/resources/application.yaml
+/src/test/*application.yaml
+test\
+application.yaml
+.mvn\
+.idea\
+target\
+test\
+target\
+
+# Project exclude paths
+/target/

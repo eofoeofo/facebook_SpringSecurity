@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$CONTENT_TITLE">ClonFacebook</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <th:block layout:fragment="css"></th:block>
+    <th:block layout:fragment="script"></th:block>
+</head>
+<body>
+    <div id="container">
+        <th:block th:replace="commonHeader :: header"></th:block>
+        <section>
+            <th:block layout:fragment="content"></th:block>
+        </section>
+    </div>
+</body>
+</html>

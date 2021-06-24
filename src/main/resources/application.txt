@@ -1,0 +1,35 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: durk3501@gmail.com
+    password: hucafkrhtcucirbd
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  thymeleaf:
+    check-template-location: true
+    prefix: classpath:templates/
+    suffix: .html
+    mode: HTML
+    cache: false
+  datasource:
+    url: jdbc:mysql://localhost:3308/facebook
+    username: root
+    password: koreait
+    driver-class-name: org.mariadb.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 30MB
+      location: D:/springImg
+mybatis:
+  mapper-locations: mybatis-mapper/**/*.xml
+  type-aliases-package: com.koreait.facebook
+
+#톰캣 포트 변경
+server:
+  port: 8090
