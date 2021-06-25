@@ -2,15 +2,91 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="basicLayout">
+<head>
+    <title>프로필</title>
+</head>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/user/profile.css}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+</th:block>
 
-    <th:block layout:fragment="css">
-        <link rel="stylesheet" th:href="@{/css/user/profile.css}">
-    </th:block>
+<th:block layout:fragment="js">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script defer th:src="@{/js/user/profile.js}"></script>
+</th:block>
 
-    <th:block layout:fragment="content">
-        <form th:action="@{profileImg}" method="post" enctype="multipart/form-data">
-            <div>이미지 : <input type="file" name="imgArr" multiple accept="image/*"></div>
+<th:block layout:fragment="content" th:with="auth=${#authentication.getPrincipal().getUser()}">
+    <div th:attr="data-main-profile=${auth.mainProfile}"></div>
+    <form th:action="@{profileImg}" method="post" enctype="multipart/form-data">
+        <div>
+            이미지 : <input type="file" name="imgArr" multiple accept="image/*">
             <input type="submit" value="업로드">
-        </form>
-    </th:block>
+        </div>
+    </form>
+
+    <div id="flexContainer" th:if="${auth.mainProfile != null}">
+        <div>
+            <img class="profile w300 pointer"
+                 th:src="@{/pic/profile/{iuser}/{img}(iuser=${auth.iuser}, img=${auth.mainProfile})}">
+        </div>
+    </div>
+
+    <div class="modal hide">
+        <div class="modal_close_parent"><i class="modal_close fas fa-times"></i></div>
+        <div style="background-color: white;">
+            <!-- Slider main container -->
+            <div class="swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide" th:each="item : ${profileList}">
+                        <div>
+                            <div class="profile-img-parent" th:unless="${item.img == auth.mainProfile}">
+                                <i class="no-main-profile pointer fas fa-bell" th:attr="data-iprofile=${item.iprofile}"></i>
+                            </div>
+                            <img th:src="@{/pic/profile/{iuser}/{img}(iuser=${auth.iuser}, img=${item.img})}">
+                        </div>
+                    </div>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        const swiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: false,
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+        });
+    </script>
+</th:block>
 </html>
