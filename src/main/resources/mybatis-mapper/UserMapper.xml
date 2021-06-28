@@ -46,5 +46,10 @@
         AND B.iprofile = ${iprofile}
         SET A.mainProfile = B.img
         WHERE A.iuser = #{iuser}
+        <selectKey order="AFTER" resultType="String" keyColumn="mainProfile" keyProperty="img">
+            SELECT mainProfile
+                FROM    t_user
+            WHERE iuser = #{iuser}
+        </selectKey>
     </update>
 </mapper>

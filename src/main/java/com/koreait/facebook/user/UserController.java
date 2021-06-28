@@ -57,11 +57,8 @@ public class UserController {
 
     @ResponseBody
     @GetMapping("/mainProfile")
-    public Map<String, Integer> mainProfile(UserProfileEntity param) {
-        Map<String, Integer> res = new HashMap<>();
-        res.put("result",service.updUserMainProfile(param));
-
-        return res;
+    public Map<String, Object> mainProfile(UserProfileEntity param) {
+        return service.updUserMainProfile(param);
     }
 }
 

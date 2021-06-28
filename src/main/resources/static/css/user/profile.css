@@ -1,0 +1,19 @@
+#flexContainer {
+    align-items: center;
+    display: flex;
+    height: 300px;
+    justify-content: center;
+    width: 100%;
+}
+
+.swiper-container {
+    height: 40vw;
+    width: 90vw;
+}
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+.no-main-profile {
+    font-size: 30px;
+}

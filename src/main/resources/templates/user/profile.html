@@ -45,6 +45,24 @@
                                 <i class="no-main-profile pointer fas fa-bell" th:attr="data-iprofile=${item.iprofile}"></i>
                             </div>
                             <img th:src="@{/pic/profile/{iuser}/{img}(iuser=${auth.iuser}, img=${item.img})}">
+                            <table>
+                                <tr>
+                                    <th>email</th>
+                                    <td th:text="${auth.email}"></td>
+                                </tr>
+                                <tr>
+                                    <th>name</th>
+                                    <td th:text="${auth.nm}"></td>
+                                </tr>
+                                <tr>
+                                    <th>tel</th>
+                                    <td th:text="${auth.tel}"></td>
+                                </tr>
+                                <tr>
+                                    <th>reg date</th>
+                                    <td th:text="${auth.regdt}"></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
